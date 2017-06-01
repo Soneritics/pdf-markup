@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<title>PDF Markup</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="jquery-ui/jquery-ui.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/dc5a44c1ca.js"></script>
+        <script src="Markup/Markup.js"></script>
+        <script src="Markup/Plugins/Text.js"></script>
+        <script src="Markup/Plugins/Image.js"></script>
+        <script src="Markup/Plugins/Invoice.js"></script>
+        <script src="scripts.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+
+	<body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>PDF Markup</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 button-bar">
+                    <ul>
+                        <li><a href="javascript:;" data-plugin="MarkupText" class="btn btn-primary" title="Tekst invoegen"><i class="fa fa-font"></i></a></li>
+                        <li><a href="javascript:;" data-plugin="MarkupImage" class="btn btn-primary" title="Afbeelding invoegen"><i class="fa fa-image"></i></a></li>
+                        <li><a href="javascript:;" data-plugin="MarkupInvoice" class="btn btn-primary" title="Factuuroverzicht invoegen"><i class="fa fa-list"></i></a></li>
+                    </ul>
+                    
+                    <div></div>
+                </div>
+
+                <div class="col-9">
+                    <div id="pdf-markup"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

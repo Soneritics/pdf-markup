@@ -1,0 +1,32 @@
+body {
+    background-color: #fefefe !important;    
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.button-bar > div {
+    margin: 10px 0 0 0;
+    padding: 5px;
+    background-color: #efefef;
+}
+
+.button-bar > ul {
+    margin: 0;
+    padding: 5px;
+    list-style: none;
+    background-color: #efefef;
+}
+
+.button-bar > ul > li {
+    display: inline;
+}
+
+#pdf-markup {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
