@@ -45,7 +45,6 @@ var Markup = function(markupField) {
                 });
 
             if (plugins.length > 0) {
-                console.log(plugins);
                 for (var i in plugins) {
                     if (plugins[i].HandlesType(elementObject.type)) {
                         plugins[i].Paint(elementObject);
