@@ -67,6 +67,7 @@ var Markup = function(markupField) {
         $(this.MarkupField).children().draggable({
             stop: function(event, ui) {
                 UpdatePositions();
+                SendUpdateEvent();
             }
         });
     };
@@ -78,6 +79,27 @@ var Markup = function(markupField) {
             
             if (this.Elements[activeElement]) {
                 $('#' + this.Elements[activeElement].Handle).css({border: '1px solid ' + settings.activeBorderColor});
+                SendActivateEvent();
+            }
+        }
+    };
+    
+    var SendUpdateEvent = function() {
+        if (this.Elements[activeElement]) {
+            for (var i in plugins) {
+                if (plugins[i].HandlesType(this.Elements[activeElement].type)) {
+                    plugins[i].Update(this.Elements[activeElement]);
+                }
+            }
+        }
+    };
+    
+    var SendActivateEvent = function() {
+        if (this.Elements[activeElement]) {
+            for (var i in plugins) {
+                if (plugins[i].HandlesType(this.Elements[activeElement].type)) {
+                    plugins[i].Activate(this.Elements[activeElement]);
+                }
             }
         }
     };
@@ -104,8 +126,8 @@ var Markup = function(markupField) {
     };
 
     this.ActivateElementEvent = function(event) {
-        ActivateElement($(this).attr('id'));
         event.stopPropagation();
+        ActivateElement($(this).attr('id'));
     };
     
     this.ResetActiveElement = function() {

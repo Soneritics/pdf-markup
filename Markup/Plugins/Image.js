@@ -11,6 +11,10 @@ var MarkupImage = {
         
     },
 
+    Update: function(elementObject) {
+        
+    },
+
     New: function(markup, image) {
        markup.AddElement({
            type: "image",

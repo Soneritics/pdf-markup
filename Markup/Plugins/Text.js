@@ -11,6 +11,10 @@ var MarkupText = {
         
     },
 
+    Update: function(elementObject) {
+        
+    },
+
     New: function(markup, text) {
        markup.AddElement({
            type: "text",
