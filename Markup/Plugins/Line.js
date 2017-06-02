@@ -8,7 +8,7 @@ var MarkupLine = {
             left: SizeCalculator.ToPixels(elementObject.x) + 'px',
             top: SizeCalculator.ToPixels(elementObject.y) + 'px',
             width: SizeCalculator.ToPixels(elementObject.width) + 'px',
-            heigth: SizeCalculator.ToPixels(elementObject.heigth) + 'px',
+            height: SizeCalculator.ToPixels(elementObject.height) + 'px',
             backgroundColor: elementObject.color
         });
     },
@@ -40,10 +40,6 @@ var MarkupLine = {
                },
                width: {
                    label: 'Width (mm)',
-                   component: 'number'
-               },
-               height: {
-                   label: 'Height (mm)',
                    component: 'number'
                },
                color: {
