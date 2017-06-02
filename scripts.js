@@ -1,6 +1,6 @@
 var markup = null;
 $(function() {
-   markup = Markup('#pdf-markup');
+   markup = Markup('#pdf-markup', MarkupTools('.button-bar > div'));
 
    $('.button-bar > ul').find('a').each(function() {
         var pluginName = $(this).data('plugin');

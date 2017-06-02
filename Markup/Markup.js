@@ -8,8 +8,9 @@ var formats = {
     a4: [210, 297]
 };
 
-var Markup = function(markupField) {
+var Markup = function(markupField, markupTools) {
     this.MarkupField = markupField;
+    this.MarkupTools = markupTools;
     this.Elements = [];
     var plugins = [];
     var objectHandleId = 0;
@@ -19,8 +20,8 @@ var Markup = function(markupField) {
         $(markupField)
             .on('click', function(){ ResetActiveElement(); })
             .css({
-                width: (formats[settings.format][0] * settings.sizeMultiplier) + 'px',
-                height: (formats[settings.format][1] * settings.sizeMultiplier) + 'px'
+                width: SizeCalculator.ToPixels(formats[settings.format][0]) + 'px',
+                height: SizeCalculator.ToPixels(formats[settings.format][1]) + 'px'
             });
     };
     
@@ -57,8 +58,8 @@ var Markup = function(markupField) {
     var UpdatePositions = function() {
         if (this.Elements.length > 0) {
             for (var i in this.Elements) {
-                this.Elements[i].x = $('#' + this.Elements[i].Handle).position().left;
-                this.Elements[i].y = $('#' + this.Elements[i].Handle).position().top;
+                this.Elements[i].x = Math.round(SizeCalculator.ToMM($('#' + this.Elements[i].Handle).position().left));
+                this.Elements[i].y = Math.round(SizeCalculator.ToMM($('#' + this.Elements[i].Handle).position().top));
             }
         }
     };
@@ -89,6 +90,7 @@ var Markup = function(markupField) {
             for (var i in plugins) {
                 if (plugins[i].HandlesType(this.Elements[activeElement].type)) {
                     plugins[i].Update(this.Elements[activeElement]);
+                    markupTools.Activate(this.Elements[activeElement], plugins[i]);
                 }
             }
         }
@@ -99,6 +101,7 @@ var Markup = function(markupField) {
             for (var i in plugins) {
                 if (plugins[i].HandlesType(this.Elements[activeElement].type)) {
                     plugins[i].Activate(this.Elements[activeElement]);
+                    markupTools.Activate(this.Elements[activeElement], plugins[i]);
                 }
             }
         }
@@ -136,11 +139,12 @@ var Markup = function(markupField) {
         }
 
         activeElement = -1;
+        markupTools.Deactivate();
     };
     
     this.AddElement = function(elementObject) {
         this.Elements.push(elementObject);
-        Refresh();
+        this.Refresh();
         ActivateElementByIndex(this.Elements.length - 1);
     };
 
