@@ -5,8 +5,10 @@ var MarkupLine = {
 
     Paint: function(elementObject) {
         $('#' + elementObject.Handle).css({
-            width: elementObject.width + 'px',
-            heigth: elementObject.heigth + 'px',
+            left: SizeCalculator.ToPixels(elementObject.x) + 'px',
+            top: SizeCalculator.ToPixels(elementObject.y) + 'px',
+            width: SizeCalculator.ToPixels(elementObject.width) + 'px',
+            heigth: SizeCalculator.ToPixels(elementObject.heigth) + 'px',
             backgroundColor: elementObject.color
         });
     },
@@ -16,17 +18,43 @@ var MarkupLine = {
     },
 
     Update: function(elementObject) {
-        
+        this.Paint(elementObject);
     },
 
-    New: function(markup, text) {
+    New: function(markup) {
        markup.AddElement({
            type: "line",
            x: 10,
            y: 10,
-           width: 500,
+           width: 190,
            height: 1,
-           color: '#00000'
+           color: '#00000',
+           properties: {
+               x: {
+                   label: 'Left (mm)',
+                   component: 'number'
+               },
+               y: {
+                   label: 'Top (mm)',
+                   component: 'number'
+               },
+               width: {
+                   label: 'Width (mm)',
+                   component: 'number'
+               },
+               height: {
+                   label: 'Height (mm)',
+                   component: 'number'
+               },
+               color: {
+                   label: 'Color',
+                   component: 'select',
+                   items: {
+                       'Black': '#00000',
+                       'Silver': '#C0C0C0',
+                   }
+               }
+           }
        });
     }
 };
