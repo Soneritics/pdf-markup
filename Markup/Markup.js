@@ -23,16 +23,29 @@ var Markup = function(markupField, markupTools) {
                 width: SizeCalculator.ToPixels(formats[settings.format][0]) + 'px',
                 height: SizeCalculator.ToPixels(formats[settings.format][1]) + 'px'
             });
+
+        $(window).on('keyup', function(e) {
+            if(e.keyCode == 46) {
+                RemoveActiveElement();
+            }
+        });
     };
-    
+
+    var ClearObjects = function() {
+        ResetActiveElement();
+
+        for (var i in this.Elements) {
+            if (this.Elements[i].Handle) {
+                $('#' + this.Elements[i].Handle).remove();
+            }
+        }
+    };
+
     var AddObjects = function() {
+        ClearObjects();
+
         for (var i in this.Elements) {
             var elementObject = this.Elements[i];
-            
-            if (elementObject.Handle) {
-                $('#' + elementObject.Handle).remove();
-            }
-
             elementObject.Handle = "PDFMARKUP-" + ++objectHandleId;
             $(this.MarkupField).prepend('<div id="' + elementObject.Handle + '"></div>');
             $('#' + elementObject.Handle)
@@ -111,7 +124,11 @@ var Markup = function(markupField, markupTools) {
             }
         }
     };
-    
+
+    var RemoveActiveElement = function() {
+        this.RemoveElement(activeElement);
+    };
+
     this.AddPlugin = function(plugin) {
         plugins.push(plugin);
     };
@@ -152,6 +169,12 @@ var Markup = function(markupField, markupTools) {
         this.Refresh();
         ActivateElementByIndex(this.Elements.length - 1);
         $(this).trigger('add');
+    };
+
+    this.RemoveElement = function(index) {
+        ClearObjects();
+        this.Elements.splice(index, 1);
+        this.Refresh();
     };
 
     this.GetActiveElement = function() {
