@@ -1,6 +1,5 @@
 var MarkupTools = function(selector) {
     var element = $(selector);
-
     this.Active = {};
 
     this.Activate = function(markupElement, plugin) {
@@ -31,6 +30,14 @@ var MarkupTools = function(selector) {
                         $(container).html('<input class="form-control" type="number" value="">');
                         break;
 
+                    case 'range':
+                        $(container).html('<input class="form-control" type="range" value="">');
+                        $(container).children('input').attr({
+                            min: markupElement.properties[i].range.from,
+                            max: markupElement.properties[i].range.to
+                        });
+                        break;
+
                     case 'select':
                         $(container).html('<select class="form-control" type="number"></select>');
                         var select = $(container).children('select');
@@ -47,6 +54,14 @@ var MarkupTools = function(selector) {
                         $(container).html('<select class="form-control" type="number"><option value="1">Yes</option><option value="0">No</option></select>');
                         val = val ? '1' : '0';
                         break;
+
+                    default:
+                        $(this).trigger(markupElement.properties[i].component, {
+                            container: container,
+                            markupElement: markupElement,
+                            property: i,
+                            plugin: plugin
+                        });
                 }
 
                 $(container).children('input,textarea,select')
