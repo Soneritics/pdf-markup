@@ -7,10 +7,6 @@ var MarkupImage = {
         $('#' + elementObject.Handle).text('image');
     },
 
-    Activate: function(elementObject) {
-        
-    },
-
     Update: function(elementObject) {
         
     },

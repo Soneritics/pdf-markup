@@ -102,8 +102,11 @@ var Markup = function(markupField, markupTools) {
         if (this.Elements[activeElement]) {
             for (var i in plugins) {
                 if (plugins[i].HandlesType(this.Elements[activeElement].type)) {
-                    plugins[i].Activate(this.Elements[activeElement]);
                     markupTools.Activate(this.Elements[activeElement], plugins[i]);
+
+                    if (plugins[i].Activate) {
+                        plugins[i].Activate(this.Elements[activeElement]);
+                    }
                 }
             }
         }

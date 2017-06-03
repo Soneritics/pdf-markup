@@ -20,10 +20,6 @@ var MarkupInvoice = {
             .css('width', '100%');
     },
 
-    Activate: function(elementObject) {
-        
-    },
-
     Update: function(elementObject) {
         this.Paint(elementObject);
     },

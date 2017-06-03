@@ -13,10 +13,6 @@ var MarkupLine = {
         });
     },
 
-    Activate: function(elementObject) {
-        
-    },
-
     Update: function(elementObject) {
         this.Paint(elementObject);
     },
