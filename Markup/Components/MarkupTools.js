@@ -24,6 +24,11 @@ var MarkupTools = function(selector) {
 
                     case 'textarea':
                         $(container).html('<textarea class="form-control"></textarea>');
+                        $(container).children('textarea').css({
+                            whiteSpace: 'pre',
+                            overflowWrap: 'normal',
+                            overflowX: 'scroll'
+                        });
                         break;
 
                     case 'number':
