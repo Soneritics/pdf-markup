@@ -94,6 +94,8 @@ var Markup = function(markupField, markupTools) {
                 }
             }
         }
+
+        $(this).trigger('update');
     };
     
     var SendActivateEvent = function() {
@@ -146,6 +148,7 @@ var Markup = function(markupField, markupTools) {
         this.Elements.push(elementObject);
         this.Refresh();
         ActivateElementByIndex(this.Elements.length - 1);
+        $(this).trigger('add');
     };
 
     this.GetActiveElement = function() {
