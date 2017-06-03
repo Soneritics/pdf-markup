@@ -8,7 +8,7 @@ var MarkupImage = {
     },
 
     Update: function(elementObject) {
-        
+        this.Paint(elementObject);
     },
 
     New: function(markup, image) {
