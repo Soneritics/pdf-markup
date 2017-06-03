@@ -166,6 +166,10 @@ var Markup = function(markupField, markupTools) {
             if (result[i].Handle) {
                 delete result[i].Handle;
             }
+
+            if (result[i].properties) {
+                delete result[i].properties;
+            }
         }
 
         return result;
