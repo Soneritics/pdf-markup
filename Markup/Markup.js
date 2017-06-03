@@ -155,6 +155,18 @@ var Markup = function(markupField, markupTools) {
 
         return null;
     };
+
+    this.Serialize = function() {
+        var result = JSON.parse(JSON.stringify(this.Elements));
+
+        for (var i in result) {
+            if (result[i].Handle) {
+                delete result[i].Handle;
+            }
+        }
+
+        return result;
+    };
     
     initMarkupField();
     return this;
