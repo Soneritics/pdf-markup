@@ -200,6 +200,21 @@ var Markup = function(markupField, markupTools) {
 
         return result;
     };
+
+    this.Load = function(data) {
+        ClearObjects();
+
+        for (var i in data) {
+            window['Markup' + data[i]['type'][0].toUpperCase() + data[i]['type'].substr(1)].New(this);
+            var element = this.Elements[this.Elements.length - 1];
+
+            for (var j in data[i]) {
+                element[j] = data[i][j];
+            }
+        }
+
+        this.Refresh();
+    };
     
     initMarkupField();
     return this;
