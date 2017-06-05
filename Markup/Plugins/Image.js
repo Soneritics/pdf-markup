@@ -23,13 +23,13 @@ var MarkupImage = {
                 fullyPainted = true;
             }
 
-            $(img)
-                .attr('src', elementObject.source)
-                .css({
-                    left: SizeCalculator.ToPixels(elementObject.x) + 'px',
-                    top: SizeCalculator.ToPixels(elementObject.y) + 'px'
-                });
+            $(img).attr('src', elementObject.source)
         }
+
+        $('#' + elementObject.Handle).css({
+            left: SizeCalculator.ToPixels(elementObject.x) + 'px',
+            top: SizeCalculator.ToPixels(elementObject.y) + 'px'
+        });
 
         if (fullyPainted) {
             $(this).trigger('painted', elementObject);
