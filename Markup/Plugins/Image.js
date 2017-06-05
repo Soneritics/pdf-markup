@@ -43,7 +43,7 @@ var MarkupImage = {
     New: function(markup, image) {
        markup.AddElement({
            type: "image",
-           source: null,
+           source: image,
            x: 10,
            y: 10,
            width: null,
