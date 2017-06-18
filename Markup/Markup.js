@@ -129,6 +129,20 @@ var Markup = function(markupField, markupTools) {
         this.RemoveElement(activeElement);
     };
 
+    var escapeJSON = function(key, val) {
+        if (typeof(val)!="string") return val;
+        return val
+            .replace(/[\\]/g, '\\\\')
+            .replace(/[\/]/g, '\\/')
+            .replace(/[\b]/g, '\\b')
+            .replace(/[\f]/g, '\\f')
+            .replace(/[\n]/g, '\\n')
+            .replace(/[\r]/g, '\\r')
+            .replace(/[\t]/g, '\\t')
+            .replace(/[\"]/g, '\\"')
+            .replace(/\\'/g, "\\'");
+    };
+
     this.AddPlugin = function(plugin) {
         plugins.push(plugin);
     };
@@ -186,7 +200,7 @@ var Markup = function(markupField, markupTools) {
     };
 
     this.Serialize = function() {
-        var result = JSON.parse(JSON.stringify(this.Elements));
+        var result = JSON.parse(JSON.stringify(this.Elements, escapeJSON));
 
         for (var i in result) {
             if (result[i].Handle) {
@@ -219,4 +233,3 @@ var Markup = function(markupField, markupTools) {
     initMarkupField();
     return this;
 };
-
